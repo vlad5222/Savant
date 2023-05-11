@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+      integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+   <div class="container max-w-7xl w-full mx-auto border-2 border-[#de6d0b]">
+      <div x-data="{ currentPage: 'home', navOpen: false, scrolledFromTop: false}"
+         x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+         @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false" :class="{
+      'overflow-hidden': navOpen,
+      'overflow-scroll': !navOpen
+      }">
+         <header
+            class="fixed max-w-7xl w-full bg-blue-500 flex justify-between items-center px-4 md:px-12 transition-all duration-200 h-24"
+            :class="{'h-24': !scrolledFromTop, 'h-14': scrolledFromTop}">
+            <h3 class="text-2xl italic font-semibold text-white">Wladder</h3>
+            
+            <nav>
+               <button class="md:hidden" @click="navOpen = !navOpen">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+               </button>
+               <ul class="fixed left-0 right-0 min-h-screen px-4 pt-8 space-y-4 bg-transparent text-white transform transition duration-300 translate-x-full md:relative md:flex md:space-x-10 md:min-h-0 md:px-0 md:py-0 md:space-y-0 md:translate-x-0"
+                  :class="{'translate-x-full': !navOpen}" :class="{'translate-x-0': navOpen}">
+                  <li class="">
+                     <a href="#" @click="currentPage = 'home'">Home</a>
+                  </li>
+                  <li class="">
+                     <a href="#" @click="currentPage = 'about'">About</a>
+                  </li>
+                  <li>
+                     <a href="#" @click="currentPage = 'contact'">Contact</a>
+                  </li>
+                  <li>
+                     <a href="#" @click="currentPage = 'team'">Team</a>
+                  </li>
+               </ul>
+            </nav>
+         </header>
+
+         <div>
+            <div x-show="currentPage === 'home'">
+               <section class="max-w-7xl full h-[1500px] bg-[#1db812]">1</section>
+            </div>
+            <div x-show="currentPage === 'about'">
+               <section class="max-w-7xl full h-[1500px] bg-[#b81265]">2</section>
+            </div>
+            <div x-show="currentPage === 'contact'">
+               <section class="max-w-7xl full h-[1500px] bg-[#1244b8]">3</section>
+            </div>
+            <div x-show="currentPage === 'team'">
+               <section class="max-w-7xl full h-[1500px] bg-[#ad9407]">4</section>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>
